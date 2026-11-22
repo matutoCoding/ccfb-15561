@@ -1,0 +1,130 @@
+@import 'tailwindcss';
+
+:root {
+  /* 8pt 间距系统 */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+
+  /* 字阶 */
+  --fs-xs: 14px;
+  --fs-sm: 15px;
+  --fs-base: 16px;
+  --fs-md: 18px;
+  --fs-lg: 22px;
+  --fs-xl: 28px;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* 中性色阶 slate */
+  --c-bg: #f6f7f9;
+  --c-surface: #ffffff;
+  --c-surface-2: #f1f3f5;
+  --c-border: #dde1e6;
+  --c-text: #1f2937;
+  --c-text-2: #52606d;
+  --c-text-3: #7b8794;
+
+  /* 主色（稀有使用） */
+  --c-primary: #2563eb;
+  --c-primary-hover: #1d4ed8;
+  --c-primary-soft: #eff4ff;
+  --c-danger: #dc2626;
+  --c-danger-soft: #fef2f2;
+  --c-warning: #b45309;
+  --c-warning-soft: #fffbeb;
+  --c-success: #047857;
+  --c-success-soft: #ecfdf5;
+
+  /* 圆角 */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.12);
+
+  /* 过渡 */
+  --t-fast: 0.15s ease;
+  --t: 0.2s ease;
+
+  --sidebar-w: 208px;
+  --header-h: 56px;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --c-bg: #111418;
+  --c-surface: #1a1e24;
+  --c-surface-2: #232830;
+  --c-border: #2e353f;
+  --c-text: #e5e9ef;
+  --c-text-2: #a8b2bf;
+  --c-text-3: #7b8794;
+  --c-primary: #6096ff;
+  --c-primary-hover: #84b0ff;
+  --c-primary-soft: #1c2740;
+  --c-danger: #f87171;
+  --c-danger-soft: #3a1d1d;
+  --c-warning: #fbbf24;
+  --c-warning-soft: #332914;
+  --c-success: #34d399;
+  --c-success-soft: #123026;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family:
+    'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-normal);
+  color: var(--c-text);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--c-border);
+  border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

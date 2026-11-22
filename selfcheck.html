@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebGL 自检</title>
+  </head>
+  <body>
+    <pre id="out">running...</pre>
+    <script type="module">
+      const out = document.getElementById('out')
+      const logs = []
+      const log = (msg) => {
+        logs.push(msg)
+        out.textContent = logs.join('\n')
+      }
+      const results = []
+      const check = (name, fn) => {
+        try {
+          fn()
+          results.push(`PASS ${name}`)
+          log(`PASS ${name}`)
+        } catch (err) {
+          results.push(`FAIL ${name} :: ${err.message}`)
+          log(`FAIL ${name} :: ${err.message}`)
+        }
+      }
+
+      try {
+        const canvas = document.createElement('canvas')
+        canvas.width = 512
+        canvas.height = 256
+        const gl = canvas.getContext('webgl2')
+        if (!gl) throw new Error('WebGL2 不可用')
+        log(`WebGL2 vendor: ${gl.getParameter(gl.VERSION)}`)
+
+        const mod = await import('/src/selfcheck.ts')
+        mod.runSelfCheck(gl, check, log)
+
+        setTimeout(() => {
+          const failed = results.filter((r) => r.startsWith('FAIL'))
+          log(`\n=== ${results.length - failed.length}/${results.length} passed ===`)
+          document.title = failed.length === 0 ? 'SELFCHECK_OK' : 'SELFCHECK_FAIL'
+        }, 500)
+      } catch (err) {
+        log(`FATAL ${err.message}`)
+        document.title = 'SELFCHECK_FAIL'
+      }
+    </script>
+  </body>
+</html>
